@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji Menu and Comment Form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+<body>
+    <!-- Menu - Centré -->
+    <nav class="navbar is-centered" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="#">
+                🏠 Home
+            </a>
+
+            <a class="navbar-item" href="#">
+                ℹ️ About
+            </a>
+
+            <a class="navbar-item" href="#">
+                📞 Contact
+            </a>
+        </div>
+    </nav>
+
+    <!-- Comment Form - Centré -->
+    <section class="section">
+        <div class="container has-text-centered"> <!-- Utilisez has-text-centered pour centrer le contenu -->
+            <h1 class="title">Leave a Comment</h1>
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="field">
+                    <label class="label">Your Comment 📝</label>
+                    <div class="control">
+                        <textarea class="textarea" name="comment" rows="4" placeholder="Enter your comment 🗨️"></textarea>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <button class="button is-primary" type="submit">Submit 🚀</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+</html>
+        
