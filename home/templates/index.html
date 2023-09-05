@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emoji Menu and Comment Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 </head>
-<body>
+<body class="container is-max-desktop">
     <!-- Menu - Centré -->
     <nav class="navbar is-centered" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
@@ -14,7 +15,7 @@
                 🏠 Home
             </a>
 
-            <a class="navbar-item" href="#">
+            <a class="navbar-item" href="#about">
                 ℹ️ About
             </a>
 
@@ -24,26 +25,81 @@
         </div>
     </nav>
 
-    <!-- Comment Form - Centré -->
+    <!-- Grid Layout -->
     <section class="section">
-        <div class="container has-text-centered"> <!-- Utilisez has-text-centered pour centrer le contenu -->
-            <h1 class="title">Leave a Comment</h1>
-            <form action="" method="post">
-                {% csrf_token %}
-                <div class="field">
-                    <label class="label">Your Comment 📝</label>
-                    <div class="control">
-                        <textarea class="textarea" name="comment" rows="4" placeholder="Enter your comment 🗨️"></textarea>
+        <div class="container">
+            <div class="columns">
+                <!-- Colonne de droite - Description du Projet -->
+
+                <!-- Colonne de gauche - Formulaire et Sentiments -->
+                <div class="column ">
+                    <div class="container has-text-centered">
+                        <h1 class="title">Leave a Comment</h1>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <div class="field">
+                                <label class="label">Your Comment 📝</label>
+                                <div class="control">
+                                    <textarea class="textarea" name="comment" rows="4" placeholder="Enter your comment 🗨️"></textarea>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <button class="button is-primary is-start" type="submit">Submit 🚀</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                </div>
-                <div class="field">
-                    <div class="control">
-                        <button class="button is-primary" type="submit">Submit 🚀</button>
+                    {% if comment %}
+                    <div class="notification {% if sentiment == 'Positif' %}is-success{% elif sentiment == 'Négatif' %}is-danger{% endif %} mt-6">
+                        " {{ comment }} "
+                        <p>
+                            {% if sentiment == "Positif" %}
+                            <span class="tag is-success is-large">
+                                {{ sentiment }}
+                            </span> 
+                            {% elif sentiment == "Négatif" %}
+                            <span class="tag is-danger is-large">
+                                {{ sentiment }}
+                            </span> 
+                            {% endif %}
+                        </p>
                     </div>
+                    {% endif %}
                 </div>
-            </form>
+            </div>
+
+            <div class="column">
+                <div class="">
+                    <h1 class="subtitle">Project Description</h1>
+                    <p id="about">
+                        Le projet Sentiment Analysis est une application web permettant d'analyser les commentaires textuels en termes de sentiment. Les utilisateurs peuvent saisir un commentaire, et notre modèle d'analyse de sentiment déterminera s'il est positif ou négatif.
+            
+                        Caractéristiques principales :
+                        <ul>
+                            <li>📊 Analyse de sentiment en temps réel.</li>
+                            <li>📝 Classification des commentaires en "Positif" ou "Négatif".</li>
+                            <li>🌟 Interface utilisateur conviviale avec des émojis pour indiquer le sentiment.</li>
+                        </ul>
+            
+                        <strong>Public cible :</strong>
+                        <br>
+                        <ul>
+                            <li>👥 Les utilisateurs qui souhaitent évaluer rapidement le sentiment d'un commentaire.</li>
+                            <li>👨‍💻 Les développeurs intéressés par l'intégration de l'analyse de sentiment dans leurs applications.</li>
+                        </ul>
+            
+                       <strong> Technologies utilisées </strong>:
+                       <br>
+                        <ul>
+                            <li>🐍 Django pour le backend.</li>
+                            <li>🌐 HTML/CSS pour le frontend avec Bulma CSS.</li>
+                            <li>📊 NLTK et Scikit-Learn pour l'analyse de sentiment.</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 </body>
 </html>
-        
